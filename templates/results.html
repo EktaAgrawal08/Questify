@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light bg-white shadow-sm fixed-top">
+        <div class="container-fluid px-4">
+            <a href="#" class="navbar-brand gradient-text">Questify MCQs</a>
+            <a href="{{ url_for('landing') }}" class="questify-home" style="margin-left: 900px;">Home</a>
+        </div>
+    </nav>
+
+    <br><br><br>
+    <section class="mcq-hero-section">
+        <div class="mcq-container">
+            <div class="mcq-hero-text">
+                <h2 class="mcq-main-heading">Generated MCQs</h2>
+                <p class="mcq-subtext">Review the generated multiple-choice questions below.</p>
+            </div>
+        </div>
+    </section>
+
+    {% if error_msg %}
+    <div class="mcq-error">
+        <p class="mcq-error-message">{{ error_msg }}</p>
+        <ul>
+            {% for file in image_files %}
+            <li>🚫 {{ file }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Loader -->
+    <div id="loader-container">
+        <div class="loader"></div>
+        <p class="loading-text">Generating MCQs... Please wait.</p>
+    </div>
+
+    <div class="mcq-content-container">
+        {% for mcq in mcqs %}
+        <div class="mcq-box">
+            <div class="mcq-question">{{ mcq.split('A)')[0].strip() }}</div>
+            <div class="mcq-options">
+                <div class="mcq-option">A) {{ mcq.split('A)')[1].split('B)')[0].strip() }}</div>
+                <div class="mcq-option">B) {{ mcq.split('B)')[1].split('C)')[0].strip() }}</div>
+                <div class="mcq-option">C) {{ mcq.split('C)')[1].split('D)')[0].strip() }}</div>
+                <div class="mcq-option">D) {{ mcq.split('D)')[1].split('Correct Answer:')[0].strip() }}</div>
+            </div>
+
+            <!-- Hidden Answer Section -->
+            <div class="mcq-correct-answer hidden-answer">
+                ✅ Correct Answer: {{ mcq.split('Correct Answer:')[1].strip() }}
+            </div>
+            <button class="show-answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <br><br><br>
+
+    <div class="mcq-download-container">
+        {% if mcqs %}
+        <a href="{{ url_for('download_file', filename=pdf_path) }}" class="mcq-download-btn">
+            📥 Download MCQs as PDF
+        </a>
+        <br><br><br><br><br>
+        {% endif %}
+    </div>
+
+    <style>
+        .hidden-answer {
+            display: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .show-answer-btn {
+            background: rgb(144, 136, 136); 
+            color: white !important;
+            border: none;
+            padding: 8px 15px;
+            margin-top: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .show-answer-btn:hover {
+            background: linear-gradient(to right, #7e22ce, #db2777);
+        }
+
+        .mcq-error {
+            background: linear-gradient(to right, #9333ea, #ec4899);
+            color: white;
+            padding: 15px;
+            margin: 20px auto;
+            width: 80%;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .mcq-error:hover {
+            background: linear-gradient(to right, #7e22ce, #db2777);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <script>
+        function toggleAnswer(button) {
+            let answerDiv = button.previousElementSibling;
+            if (answerDiv.style.display === "none" || answerDiv.style.display === "") {
+                answerDiv.style.display = "block";
+                button.innerText = "Hide Answer";
+            } else {
+                answerDiv.style.display = "none";
+                button.innerText = "Show Answer";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                document.getElementById("loader-container").style.display = "none";
+                document.getElementById("mcq-container").style.display = "block";
+            }, 3000);
+        });
+    </script>
+
+</body>
+
+</html>

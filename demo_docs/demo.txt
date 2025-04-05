@@ -1,0 +1,8 @@
+1. Schema Change - Entries(from given model requirements), Model Name.
+2. Crud Routes - Require your model, Crud Model [Replace -> With Your Name].
+3. Update Views - 
+a. edit - change form entries(be very careful with name, value, type).
+b. index - basic html headings, anchor tag .CHANGEname.
+c. new - form entries(be very careful with name, value, type), basic html headings.
+d. show - basic html, paragraph tag mai .CHANGEname.
+4. App - No change.

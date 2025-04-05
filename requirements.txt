@@ -1,0 +1,6 @@
+Flask
+PyMuPDF
+python-docx
+google-generativeai
+python-magic
+pdfplumber

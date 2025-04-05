@@ -1,0 +1,936 @@
+/* General Styles */
+html,
+body {
+  transition: all 0.3s ease-in-out;
+}
+
+body {
+  background: linear-gradient(to right, #eef2ff, #ede9fe);
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Dark Mode Styles - Improved */
+.dark-mode {
+  color: #e0e0e0;
+}
+
+.dark-mode body {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+/* Make sure all text elements adapt to dark mode */
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode h3, 
+.dark-mode h4, 
+.dark-mode h5, 
+.dark-mode h6, 
+.dark-mode p, 
+.dark-mode span, 
+.dark-mode div:not(.gradient-text),
+.dark-mode label {
+  color: #e0e0e0;
+}
+
+/* Fix Bootstrap navbar in dark mode */
+.dark-mode .navbar,
+.dark-mode .navbar.navbar-light,
+.dark-mode .navbar.navbar-light.bg-white {
+  background-color: #1a1a1a !important;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Fix Bootstrap form elements in dark mode */
+.dark-mode .bg-white,
+.dark-mode .form-control,
+.dark-mode .shadow-lg.bg-white {
+  background-color: #222 !important;
+  color: #e0e0e0 !important;
+  border-color: #444 !important;
+}
+
+/* Ensure links have proper contrast in dark mode */
+.dark-mode a:not(.footer-icon):not(.gradient-btn):not(.mcq-download-btn):not(.questify-home):not(.questify-home-two):not(.navbar-brand) {
+  color: #bbdefb;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode a:not(.footer-icon):not(.gradient-btn):not(.mcq-download-btn):not(.questify-home):not(.questify-home-two):not(.navbar-brand):hover {
+  color: #90caf9;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+#theme-toggle {
+  border: none; /* Remove border */
+  outline: none !important; /* Remove focus outline */
+  box-shadow: none !important; /* Remove any extra shadow */
+  background-color: transparent; /* Ensure no background */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dark-mode #theme-toggle {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#theme-toggle img {
+  width: 25px;
+  height: 25px;
+  transition: transform 0.3s ease-in-out;
+}
+
+#theme-toggle:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode #theme-toggle:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#theme-toggle:hover img {
+  transform: scale(1.1);
+}
+
+#theme-icon {
+  width: 25px;
+  height: 25px;
+  display: block; /* Ensures it is visible */
+}
+
+/* Improved Navbar - Fixed on scroll */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem; /* Adjusted padding */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  position: fixed !important; /* Force fixed position */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030 !important; /* Higher z-index to stay on top */
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(5px); /* Slight blur effect */
+}
+
+.navbar.navbar-light {
+  background-color: rgba(255, 255, 255, 0.95) !important; /* Slightly transparent */
+}
+
+.dark-mode .navbar {
+  background: rgba(26, 26, 26, 0.95) !important; /* Darker shade with transparency */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Adjust container-fluid for better navbar spacing */
+.navbar .container-fluid {
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.questify-home {
+  display: inline-block !important;
+  color: black !important;
+  font-weight: bold;
+  font-size: large;
+  text-decoration: none !important;
+  position: relative;
+  margin-left: 2rem; /* Adjusted for better spacing */
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .questify-home {
+  color: #ffffff !important; /* Ensure white text in dark mode */
+}
+
+.questify-home:hover {
+  color: linear-gradient(to right, #9333ea, #ec4899); /* Optional: Changes color on hover */
+}
+
+.questify-home-two {
+  display: inline-block !important;
+  color: black !important;
+  font-weight: bold;
+  font-size: large;
+  text-decoration: none !important;
+  position: relative;
+  margin-left: auto; /* Better positioning */
+  margin-right: 2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .questify-home-two {
+  color: #ffffff !important; /* Ensure white text in dark mode */
+}
+
+.questify-home-two:hover {
+  color: linear-gradient(to right, #9333ea, #ec4899); /* Optional: Changes color on hover */
+}
+
+.gradient-text {
+  font-size: 2.3rem; /* Increased size */
+  font-weight: bold;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text; /* Standard property for better compatibility */
+  -webkit-text-fill-color: transparent;
+  margin-left: 0; /* Adjusted margin */
+}
+
+/* Add padding to body to prevent content from being hidden under fixed navbar */
+body {
+  padding-top: 80px; /* Adjust based on navbar height */
+}
+
+/* Hero Section - Improved margins */
+.hero-section {
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 0; /* Adjusted padding */
+  transition: all 0.3s ease-in-out;
+  margin-top: 1rem; /* Add space after navbar */
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px; /* Slightly reduced for better proportions */
+  padding: 0 2rem; /* Consistent padding */
+  display: flex;
+  flex-direction: column; /* Stack on mobile */
+  gap: 3rem; /* Adjusted spacing */
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Left Text Content - Improved spacing */
+.hero-text {
+  flex: 1;
+  margin-left: 0; /* Reset margin */
+  max-width: 650px; /* Adjusted width */
+  text-align: left;
+  padding: 0 1rem; /* Add some padding */
+}
+
+.hero-text h2 {
+  font-size: 3rem; /* Slightly reduced */
+  line-height: 1.3;
+  color: #121212;
+  margin-bottom: 1.5rem; /* Increased spacing */
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .hero-text h2 {
+  color: #ffffff; /* Brighter white for better contrast */
+}
+
+.hero-text p {
+  font-size: 1.3rem; /* Slightly reduced */
+  color: #555;
+  margin-bottom: 2rem; /* Added spacing */
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .hero-text p {
+  color: #e0e0e0; /* Lighter gray for better readability */
+}
+
+/* Fix Bootstrap text-muted in dark mode */
+.dark-mode .text-muted {
+  color: #bbbbbb !important;
+}
+
+/* Fix Bootstrap text-primary in dark mode */
+.dark-mode .text-primary {
+  color: #90caf9 !important;
+}
+
+/* Right Image - Improved */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0; /* Reset margin */
+  padding: 0 1rem; /* Add some padding */
+}
+
+.hero-image img {
+  max-width: 400px; /* Slightly increased */
+  width: 100%; /* Responsive */
+  height: auto;
+  border-radius: 12px; /* Rounded corners */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+}
+
+.dark-mode .hero-image img {
+  filter: brightness(0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Darker shadow in dark mode */
+}
+
+/* Gradient Button */
+.gradient-btn {
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  color: white;
+  padding: 16px 32px; /* Slightly reduced */
+  border-radius: 40px;
+  font-size: 1.2rem; /* Slightly reduced */
+  border: none;
+  box-shadow: 0px 5px 15px rgba(147, 51, 234, 0.3); /* Colored shadow */
+  transition: opacity 0.3s ease, transform 0.2s ease-in-out, all 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.dark-mode .gradient-btn {
+  box-shadow: 0px 5px 15px rgba(147, 51, 234, 0.5); /* Enhanced shadow in dark mode */
+}
+
+.gradient-btn:hover {
+  color: white;
+  opacity: 0.95;
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 20px rgba(147, 51, 234, 0.4); /* Enhanced shadow on hover */
+}
+
+/* Info Section - Improved spacing */
+.info-section {
+  padding: 5rem 0; /* Increased padding */
+  background: linear-gradient(to right, #eef2ff, #ede9fe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .info-section {
+  background: #121212;
+}
+
+/* Force vertical stacking with improved spacing */
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px; /* Increased width */
+  width: 100%;
+  text-align: center;
+  padding: 0 2rem; /* Added padding */
+}
+
+/* Gradient title - Improved */
+.info-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  background-clip: text; /* Standard property */
+  -webkit-background-clip: text; /* WebKit (Chrome, Safari, Edge) */
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Ensures compatibility */
+  margin-bottom: 2.5rem; /* Increased spacing */
+}
+
+/* Styling for paragraphs - Improved */
+.info-text {
+  font-size: 1.3rem; /* Slightly reduced */
+  color: #444;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 1.5rem; /* Increased spacing */
+  line-height: 1.7; /* Increased line height */
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .info-text {
+  color: #e0e0e0; /* Lighter color for better readability */
+}
+
+/* MCQ Navbar */
+.mcq-navbar {
+  position: fixed; /* Fix it at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  background: white;
+  padding: 1rem 2rem; /* Adjusted padding */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1030 !important; /* Higher z-index to stay on top */
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .mcq-navbar {
+  background: rgba(26, 26, 26, 0.95); /* Darker shade with transparency */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* MCQ Title */
+.mcq-title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  -webkit-background-clip: text; /* Required for WebKit browsers */
+  background-clip: text; /* Standard property for wider compatibility */
+  -webkit-text-fill-color: transparent; /* Required for WebKit browsers */
+  margin-left: 0; /* Reset margin */
+}
+
+/* Hero Section */
+.mcq-hero-section {
+  min-height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 0;
+  margin-top: 0; /* Increased space for fixed navbar */
+  transition: all 0.3s ease-in-out;
+}
+
+.mcq-hero-text {
+  width: 100%;
+  max-width: 800px;
+}
+
+.mcq-main-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .mcq-main-heading {
+  color: #ffffff; /* Brighter white for better contrast */
+}
+
+.mcq-subtext {
+  font-size: 1.2rem;
+  color: #555;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .mcq-subtext {
+  color: #e0e0e0; /* Lighter color for better readability */
+}
+
+/* MCQ Content */
+.mcq-content-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem; /* Consistent padding */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* MCQ Box */
+.mcq-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.2s ease-in-out, all 0.3s ease-in-out;
+}
+
+.dark-mode .mcq-box {
+  background: #1e1e1e;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #444; /* Subtle border as requested */
+}
+
+/* Question */
+.mcq-question {
+  font-weight: bold;
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  color: #222;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .mcq-question {
+  color: #ffffff; /* Brighter white for better contrast */
+}
+
+/* Options */
+.mcq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mcq-option {
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  transition: background 0.2s ease-in-out, all 0.3s ease-in-out;
+}
+
+.dark-mode .mcq-option {
+  background: #333;
+  color: #fff;
+  border: 1px solid #444; /* Subtle border as requested */
+}
+
+.mcq-option:hover {
+  background: #e5e5e5;
+}
+
+.dark-mode .mcq-option:hover {
+  background: #444;
+}
+
+/* Correct Answer */
+.mcq-correct-answer {
+  margin-top: 15px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  padding: 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* Download Button */
+.mcq-download-container {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 0 2rem; /* Consistent padding */
+}
+
+.mcq-download-btn {
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 40px;
+  font-size: 1.3rem;
+  border: none;
+  box-shadow: 0px 5px 15px rgba(147, 51, 234, 0.3); /* Colored shadow */
+  transition: transform 0.2s ease-in-out, all 0.3s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.dark-mode .mcq-download-btn {
+  box-shadow: 0px 5px 15px rgba(147, 51, 234, 0.5); /* Enhanced shadow in dark mode */
+}
+
+.mcq-download-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 20px rgba(147, 51, 234, 0.4); /* Enhanced shadow on hover */
+}
+
+/* Footer Section - Improved */
+.footer-section {
+  background: #f3f3f3; /* Light Gray Background */
+  color: black;
+  padding: 4rem 0; /* Increased padding */
+  text-align: center;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  margin-top: 2rem; /* Added spacing */
+}
+
+.dark-mode .footer-section {
+  background: #1a1a1a; /* Darker shade as requested */
+  color: #e0e0e0;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem; /* Consistent padding */
+}
+
+.footer-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem; /* Increased spacing */
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .footer-title {
+  color: #ffffff; /* Brighter white for better contrast */
+}
+
+.highlight {
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  -webkit-background-clip: text; /* Ensures compatibility with WebKit browsers */
+  background-clip: text; /* Standard property for wider compatibility */
+  -webkit-text-fill-color: transparent; /* Required for WebKit browsers */
+}
+
+.footer-text {
+  font-size: 1.2rem;
+  margin-bottom: 2rem; /* Increased spacing */
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .footer-text {
+  color: #e0e0e0; /* Lighter color for better readability */
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  justify-content: center;
+  gap: 25px; /* Increased spacing */
+  margin-bottom: 1.5rem; /* Increased spacing */
+}
+
+.footer-icon {
+  font-size: 1.3rem;
+  text-decoration: none;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text; /* Standard property for wider compatibility */
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.2s ease-in-out, opacity 0.3s ease;
+  padding: 0.5rem; /* Added padding for larger click area */
+}
+
+.footer-icon i {
+  margin-right: 8px;
+}
+
+.footer-icon:hover {
+  transform: translateY(-3px);
+  opacity: 0.8;
+}
+
+.footer-copy {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 1.5rem; /* Increased spacing */
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .footer-copy {
+  opacity: 0.7; /* Slightly higher opacity for better readability */
+  color: #e0e0e0;
+}
+
+/* Loader Container */
+#loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+  margin-top: 2rem; /* Added spacing */
+}
+
+/* Loader Animation */
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #9333ea; /* Changed to match gradient */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .loader {
+  border: 6px solid #333;
+  border-top: 6px solid #9333ea;
+}
+
+/* Loading Text */
+.loading-text {
+  margin-top: 15px; /* Increased spacing */
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode .loading-text {
+  color: #ffffff; /* Brighter white for better contrast */
+}
+
+/* Keyframe Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tablet Styles - Improved */
+@media (min-width: 768px) {
+  .gradient-text {
+    font-size: 2.3rem;
+  }
+
+  .navbar {
+    padding: 1rem 2rem;
+  }
+
+  .container {
+    flex-direction: row; /* Side by side on tablet */
+    text-align: left;
+    gap: 3rem; /* Adjusted spacing */
+    padding: 0 2rem; /* Consistent padding */
+  }
+
+  .hero-section {
+    padding: 5rem 0; /* Adjusted padding */
+  }
+
+  .hero-text {
+    flex: 1;
+    text-align: left;
+    margin-left: 0; /* Reset margin */
+    padding: 0 1rem; /* Added padding */
+  }
+
+  .hero-text h2 {
+    font-size: 3rem;
+  }
+
+  .hero-text p {
+    font-size: 1.3rem;
+  }
+
+  .hero-image {
+    flex: 1;
+    padding: 0 1rem; /* Added padding */
+  }
+
+  .hero-image img {
+    max-width: 400px;
+  }
+
+  .gradient-btn {
+    padding: 16px 32px;
+    font-size: 1.2rem;
+  }
+
+  .info-title {
+    font-size: 2.5rem;
+  }
+
+  .info-text {
+    font-size: 1.3rem;
+  }
+
+  .mcq-title {
+    font-size: 2.3rem;
+  }
+
+  .mcq-main-heading {
+    font-size: 2.5rem;
+  }
+
+  .mcq-subtext {
+    font-size: 1.2rem;
+  }
+
+  .mcq-question {
+    font-size: 1.3rem;
+  }
+
+  .mcq-download-btn {
+    padding: 16px 32px;
+    font-size: 1.3rem;
+  }
+
+  .footer-title {
+    font-size: 1.8rem;
+  }
+
+  .footer-text {
+    font-size: 1.2rem;
+  }
+
+  .footer-icon {
+    font-size: 1.3rem;
+  }
+}
+
+/* Desktop Styles - Improved */
+@media (min-width: 1024px) {
+  body {
+    padding-top: 90px; /* Adjusted for larger navbar on desktop */
+  }
+
+  .navbar {
+    padding: 1.25rem 3rem; /* Increased padding */
+  }
+
+  .navbar .container-fluid {
+    padding: 0 3rem; /* Increased padding */
+  }
+
+  .questify-home {
+    margin-left: 3rem; /* Adjusted spacing */
+  }
+
+  .questify-home-two {
+    margin-right: 3rem; /* Adjusted spacing */
+  }
+
+  .container {
+    padding: 0 3rem; /* Increased padding */
+    gap: 4rem; /* Increased spacing */
+  }
+
+  .hero-text {
+    padding: 0 2rem; /* Increased padding */
+  }
+
+  .hero-text h2 {
+    font-size: 3.2rem; /* Increased size */
+  }
+
+  .hero-text p {
+    font-size: 1.4rem; /* Increased size */
+  }
+
+  .hero-image {
+    padding: 0 2rem; /* Increased padding */
+  }
+
+  .hero-image img {
+    max-width: 450px; /* Increased size */
+  }
+
+  .info-container {
+    padding: 0 3rem; /* Increased padding */
+  }
+
+  .mcq-content-container {
+    padding: 0 3rem; /* Increased padding */
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px; /* Adjusted max-width */
+    padding: 0 4rem; /* Increased padding */
+  }
+
+  .hero-text h2 {
+    font-size: 3.5rem; /* Increased size */
+  }
+
+  .hero-image img {
+    max-width: 500px; /* Increased size */
+  }
+
+  .info-container {
+    max-width: 1000px; /* Increased width */
+  }
+}
+
+/* Dark Mode Form Elements - Improved */
+.dark-mode button:not(.gradient-btn):not(.mcq-download-btn):not(#theme-toggle),
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark-mode button:not(.gradient-btn):not(.mcq-download-btn):not(#theme-toggle):hover,
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus {
+  border-color: #777;
+}
+
+/* Additional dark mode improvements for UI components */
+.dark-mode button:not(.gradient-btn):not(.mcq-download-btn):not(#theme-toggle) {
+  background-color: #333;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #aaa;
+}
+
+/* Fix Bootstrap specific elements in dark mode */
+.dark-mode .form-label {
+  color: #e0e0e0;
+}
+
+.dark-mode .form-control {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #555;
+}
+
+.dark-mode .form-control:focus {
+  background-color: #333;
+  color: #e0e0e0;
+  border-color: #777;
+  box-shadow: 0 0 0 0.25rem rgba(147, 51, 234, 0.25);
+}
+
+.dark-mode .form-control::placeholder {
+  color: #aaa;
+}
+
+/* Fix Bootstrap container in dark mode */
+.dark-mode .container-fluid {
+  background-color: transparent;
+}
+
+/* Fix Bootstrap shadow in dark mode */
+.dark-mode .shadow-sm,
+.dark-mode .shadow-lg {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Fix Bootstrap fixed-top navbar in dark mode */
+.dark-mode .navbar.fixed-top {
+  background-color: rgba(26, 26, 26, 0.95) !important;
+}
+
+/* Fix Bootstrap navbar-light in dark mode */
+.dark-mode .navbar-light {
+  background-color: rgba(26, 26, 26, 0.95) !important;
+}
+
+/* Fix Bootstrap bg-white in dark mode */
+.dark-mode .bg-white {
+  background-color: #222 !important;
+}
