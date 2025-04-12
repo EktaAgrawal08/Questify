@@ -1,83 +1,86 @@
-### 🚀 Questify
+# 🚀 Questify
 
-**Questify** is an interactive platform that allows users to upload PDF, Word, or TXT files and instantly generate MCQs from the content using the powerful Google Gemini API. Whether you're a student, teacher, or lifelong learner, Questify makes quiz creation seamless and efficient.
+**Questify** is an interactive AI-powered platform that lets users upload **PDF**, **Word**, or **TXT** files and automatically generate **multiple-choice questions (MCQs)** using the powerful **Google Gemini API**. Whether you're a student, educator, or lifelong learner, Questify makes quiz creation seamless, accurate, and lightning-fast.
+
+---
 
 ## ✨ Features
 
-- 📄 Upload **PDF, Word, or TXT** documents
-- 🤖 **AI-Powered MCQ Generation** using Google Gemini API
-- 🎯 Accurate and contextually relevant questions
-- 📥 **Download generated MCQs** in PDF format
-- 📂 Includes **demo documents** to explore functionality
-- 🌙 Dark mode toggle for comfortable viewing
+- 📄 Upload **PDF, Word, or TXT** documents  
+- 🤖 **AI-Powered MCQ Generation** via Google Gemini API  
+- 🎯 Generates **accurate and contextually relevant** questions  
+- 📥 **Download MCQs** in a clean, readable **PDF** format  
+- 🧪 Explore with included **demo documents**  
+- 🌙 **Dark mode** toggle for a comfortable viewing experience  
 
+---
 
 ## 🛠 Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Python
-- **AI Integration**: Google Gemini API 
-- **Environment Management**: `.env` with a provided `.env.example`
+- **Frontend**: HTML, CSS, JavaScript  
+- **Backend**: Python (FastAPI or Flask-based)  
+- **AI Integration**: Google Gemini API  
+- **Environment Management**: `.env` (with a `.env.example` template)  
 
+---
 
 ## 🚀 Getting Started
 
-To get Questify up and running on your local machine, follow the steps below:
+Follow these steps to run Questify on your local machine:
 
-1. **Clone the repository**First, clone the repository to your local machine and navigate into the project folder:
+### 1. Clone the Repository
 
-```shellscript
+```bash
 git clone https://github.com/EktaAgrawal08/Questify.git
 cd Questify
 ```
 
+### 2. (Optional) Create a Virtual Environment
 
-2. **Create and activate a virtual environment (optional but recommended)**It is highly recommended to set up a virtual environment to manage dependencies. You can do this by running:
-
-```shellscript
+```bash
+# Create virtual environment
 python -m venv venv
-# For Linux/macOS
+
+# Activate the environment
+# For Linux/macOS:
 source venv/bin/activate
-# For Windows
+# For Windows:
 venv\Scripts\activate
 ```
 
+### 3. Install Dependencies
 
-3. **Install dependencies**Install all the required dependencies listed in `requirements.txt`:
-
-```shellscript
+```bash
 pip install -r requirements.txt
 ```
 
+### 4. Configure Environment Variables
 
-4. **Set up environment variables**
+- Copy the `.env.example` file and rename it to `.env`.
+- Add your **Google Gemini API Key** in the appropriate field.
 
-1. Create a `.env` file in the root directory based on the `.env.example` file provided.
-2. Add your **Google Gemini API key** to the `.env` file.
+### 5. Run the Application
 
-
-
-5. **Run the application**Finally, start the application by running:
-
-```shellscript
+```bash
 python app.py
 ```
 
-The application should now be running locally. Open your browser and start using Questify!
+Your application should now be live locally. Open your browser and start exploring Questify!
 
-
-
+---
 
 ## 📂 Usage
 
-1. Upload a **PDF**, **Word**, or **TXT** file.
-2. The Google Gemini API processes the content and generates MCQs from it.
-3. View and download the generated MCQs in PDF format.
-4. You can explore the `demo_docs/` folder for sample documents to test the platform.
+1. Upload a **PDF**, **Word**, or **TXT** file.  
+2. The **Google Gemini API** analyzes the content and generates MCQs.  
+3. View and **download** the MCQs in **PDF** format.  
+4. Test the platform with ready-to-use documents in the `demo_docs/` folder.  
 
+---
 
-## 🙋‍♀️ Author
+## 👩‍💻 Author
 
-Made with 💙 by [Ekta Agrawal](https://github.com/EktaAgrawal08)
+Made with 💙 by [**Ekta Agrawal**](https://github.com/EktaAgrawal08)
 
-- 🔗 [Linkedin Profile](https://www.linkedin.com/in/ekta-agrawal-364b3a246/)
+- 🔗 [LinkedIn Profile](https://www.linkedin.com/in/ekta-agrawal-364b3a246/)
+
