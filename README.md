@@ -1,11 +1,11 @@
 ```markdown
-# 🚀 Questify
+### 🚀 Questify
 
 **Questify** is an interactive platform that allows users to upload PDFs, Word documents, or TXT files and instantly generate MCQs from the content using the powerful Google Gemini API. Whether you're a student, teacher, or lifelong learner, Questify makes quiz creation seamless and efficient.
 
 ---
 
-## ✨ Features
+### ✨ Features
 
 - 📄 Upload **PDF, Word, or TXT** documents
 - 🤖 **AI-Powered MCQ Generation** using Google Gemini API
@@ -16,7 +16,7 @@
 
 ---
 
-## 🛠 Tech Stack
+### 🛠 Tech Stack
 
 - **Frontend**: HTML, CSS, JavaScript  
 - **Backend**: Python  
@@ -25,7 +25,7 @@
 
 ---
 
-## 🚀 Getting Started
+### 🚀 Getting Started
 
 Follow the steps below to set up and run Questify on your local machine:
 
