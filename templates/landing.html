@@ -50,41 +50,56 @@
 
     <!-- Info Section -->
     <div class="info-section">
-        <div class="info-container">
-            <h2 class="info-title">Transforming Content into Engaging Questions</h2>
-            <br><br>
-            <p class="info-text">
-                Questify is an intelligent platform that allows users to upload PDFs, Word files, or text files, and
-                automatically generates Multiple Choice Questions (MCQs) with accurate answers.
-
-                Powered by the Google Gemini API, Questify ensures that the MCQs are derived solely from the uploaded
-                content, maintaining accuracy and relevance.
-            </p>
-            <p class="info-text">
-                Users can then download the generated MCQs as a PDF, making it an ideal tool for educators, students.
-            </p>
-            <br><br>
-            <button class="btn gradient-btn mt-4" onclick="window.location.href='/upload'">Start for free →</button>
+        <div class="info-card-container">
+          <h2 class="info-title">Transforming Content into Engaging Questions</h2>
+          <div class="info-cards">
+            <div class="info-card">
+              <i class="fas fa-file-upload info-icon"></i>
+              <h3 class="card-heading">Upload Documents</h3>
+              <p>Upload PDFs, Word files, or TXT documents to begin the transformation.</p>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-robot info-icon"></i>
+              <h3 class="card-heading">AI-Powered Generation</h3>
+              <p>Google Gemini API ensures the MCQs are accurate and contextually relevant.</p>
+            </div>
+            <div class="info-card">
+              <i class="fas fa-download info-icon"></i>
+              <h3 class="card-heading">Export Easily</h3>
+              <p>Download the generated MCQs in PDF format for easy use and sharing.</p>
+            </div>
+          </div>
+          <br><br><br>
+          <button class="btn gradient-btn mt-4" onclick="window.location.href='/upload'">Start for free →</button>
         </div>
-    </div>
+      </div>
+      
     <br><br><br>
 
     <!-- Footer -->
     <footer class="footer-section">
         <div class="footer-container">
-            <h2 class="footer-title">Developed by <span class="highlight">Ekta Agrawal</span></h2>
-            <p class="footer-text">Passionate about AI, technology, and creating impactful projects.</p>
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/ekta-agrawal-364b3a246/" target="_blank" class="footer-icon">
-                    <i class="fa-brands fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:agrawalekta625@gmail.com" class="footer-icon">
-                    <i class="fa-solid fa-envelope"></i> Email
-                </a>
-            </div>
-            <p class="footer-copy">&copy; 2025 Questify | All rights reserved.</p>
+          <div class="footer-divider"></div>
+          <h2 class="footer-title">Developed by <span class="highlight">Ekta Agrawal</span></h2>
+          <p class="footer-text">Passionate about AI, technology, and creating impactful projects.</p>
+      
+          <div class="footer-links">
+            <a href="https://www.linkedin.com/in/ekta-agrawal-364b3a246/" target="_blank" class="footer-icon-btn" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:agrawalekta625@gmail.com" class="footer-icon-btn" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+      
+          <p class="footer-copy">&copy; 2025 Questify | All rights reserved.</p>
+          <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="scroll-top-btn">
+            ↑ Back to top
+          </button>
+          
         </div>
-    </footer>
+      </footer>
+      
 
     <!-- Scripts -->
     <script>

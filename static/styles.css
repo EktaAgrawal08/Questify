@@ -370,6 +370,56 @@ body {
   color: #e0e0e0; /* Lighter color for better readability */
 }
 
+.info-card-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.info-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  width: 280px;
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.info-icon {
+  font-size: 2.5rem;
+  color: #9333ea;
+  margin-bottom: 1rem;
+}
+
+.card-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.dark-mode .info-card {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .info-icon {
+  color: #ec4899;
+}
+
 /* MCQ Navbar */
 .mcq-navbar {
   position: fixed; /* Fix it at the top */
@@ -638,6 +688,66 @@ body {
   opacity: 0.7; /* Slightly higher opacity for better readability */
   color: #e0e0e0;
 }
+
+
+.footer-divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  margin: 0 auto 2rem auto;
+  border-radius: 4px;
+}
+
+.footer-icon-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  color: white;
+  font-size: 1.3rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.footer-icon-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode .footer-icon-btn {
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.scroll-top-btn {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(to right, #9333ea, #ec4899);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-top-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode .scroll-top-btn {
+  background: linear-gradient(to right, #d946ef, #8b5cf6); /* Brighter gradient for dark mode */
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
 
 /* Loader Container */
 #loader-container {
