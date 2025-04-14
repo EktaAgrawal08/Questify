@@ -5,3 +5,13 @@ fpdf
 gunicorn
 python-docx
 google-generativeai
+
+
+
+# Flask	- The main backend web framework you're using
+# python-dotenv	- Loads your .env variables so you can securely use API keys
+# PyMuPDF - For reading PDF files and extracting text
+# fpdf - Used to generate PDF files, e.g., exporting MCQs
+# gunicorn - A production-grade WSGI server for running Flask apps on cloud platforms
+# python-docx -	Helps read .docx Word documents for MCQ input
+# google-generativeai -	SDK for using Gemini AI (e.g., to generate MCQs from text)
