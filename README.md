@@ -17,7 +17,7 @@
 
 ## 🛠 Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript  
+- **Frontend**: HTML, CSS, JavaScript and Bootstrap  
 - **Backend**: Python (Flask-based)  
 - **AI Integration**: Google Gemini API  
 - **Environment Management**: `.env` (with a `.env.example` template)  
