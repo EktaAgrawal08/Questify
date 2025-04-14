@@ -1,32 +1,29 @@
-# 🚀 Questify
+## 🚀 Questify: Transforming Documents into Interactive Quizzes Powered by AI
 
-**Questify** is an interactive AI-powered platform that lets users upload **PDF**, **Word**, or **TXT** files and automatically generate **multiple-choice questions (MCQs)** using the powerful **Google Gemini API**. Whether you're a student, educator, or lifelong learner, Questify makes quiz creation seamless, accurate, and lightning-fast.
+**Questify** is an interactive platform that automatically generates **multiple-choice questions (MCQs)** from **PDF**, **Word**, or **TXT** files using the powerful **Google Gemini API**. Perfect for educators, students, or lifelong learners, Questify makes quiz creation fast, easy, and accurate.
 
 ---
 
 ## ✨ Features
 
-- 📄 Upload **PDF, Word, or TXT** documents  
-- 🤖 **AI-Powered MCQ Generation** via Google Gemini API  
-- 🎯 Generates **accurate and contextually relevant** questions  
-- 📥 **Download MCQs** in a clean, readable **PDF** format  
-- 🧪 Explore with included **demo documents**  
-- 🌙 **Dark mode** toggle for a comfortable viewing experience  
+- 📄 **Upload** your **PDF**, **Word**, or **TXT** files.  
+- 🤖 **AI-Powered MCQ Generation**: Accurate and contextually relevant questions created via Google Gemini API.  
+- 📥 **Download** MCQs in a clean, readable **PDF** format.  
+- 🧪 **Demo Documents**: Try with pre-uploaded files in the `demo_docs/` folder.  
+- 🌙 **Dark Mode Toggle** for a comfortable experience at any time.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript and Bootstrap  
-- **Backend**: Python (Flask-based)  
-- **AI Integration**: Google Gemini API  
-- **Environment Management**: `.env` (with a `.env.example` template)  
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap (responsive and modern UI)  
+- **Backend**: Python (Flask) - lightweight, simple, and highly customizable  
+- **AI Integration**: Google Gemini API (for powerful document-based content analysis)  
+- **Environment Management**: `.env` (store sensitive data like API keys securely)
 
 ---
 
 ## 🚀 Getting Started
-
-Follow these steps to run Questify on your local machine:
 
 ### 1. Clone the Repository
 
@@ -38,14 +35,9 @@ cd Questify
 ### 2. (Optional) Create a Virtual Environment
 
 ```bash
-# Create virtual environment
 python -m venv venv
-
-# Activate the environment
-# For Linux/macOS:
-source venv/bin/activate
-# For Windows:
-venv\Scripts\activate
+source venv/bin/activate  # For Linux/macOS
+venv\Scripts\activate  # For Windows
 ```
 
 ### 3. Install Dependencies
@@ -56,8 +48,7 @@ pip install -r requirements.txt
 
 ### 4. Configure Environment Variables
 
-- Copy the `.env.example` file and rename it to `.env`.
-- Add your **Google Gemini API Key** in the appropriate field.
+- Copy `.env.example` to `.env` and add your **Google Gemini API Key**.
 
 ### 5. Run the Application
 
@@ -65,16 +56,16 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Your application should now be live locally. Open your browser and start exploring Questify!
+Your app should now be live locally! Open your browser and explore Questify.
 
 ---
 
 ## 📂 Usage
 
-1. Upload a **PDF**, **Word**, or **TXT** file.  
-2. The **Google Gemini API** analyzes the content and generates MCQs.  
-3. View and **download** the MCQs in **PDF** format.  
-4. Test the platform with ready-to-use documents in the `demo_docs/` folder.  
+1. **Upload** a **PDF**, **Word**, or **TXT** file.  
+2. The **Google Gemini API** analyzes the document and generates MCQs.  
+3. **Download** the generated MCQs in a **PDF** format.  
+4. Use the **demo documents** in the `demo_docs/` folder to test the platform.
 
 ---
 
@@ -83,4 +74,3 @@ Your application should now be live locally. Open your browser and start explori
 Made with 💙 by [**Ekta Agrawal**](https://github.com/EktaAgrawal08)
 
 - 🔗 [LinkedIn Profile](https://www.linkedin.com/in/ekta-agrawal-364b3a246/)
-
