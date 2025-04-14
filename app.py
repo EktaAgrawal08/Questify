@@ -2,7 +2,7 @@ import os # File and path handling, Helps in working with .env files, temp files
 import fitz  # PyMuPDF, Extracts text from PDFs and detects if PDFs are image-only
 
 # Imports Flask and essential utilities - Enables routing (Flask), rendering HTML (render_template), handling form submissions (request), downloading files (send_file), and error handling (abort, jsonify).
-from flask import Flask, render_template, request, redirect, url_for, send_file, abort, jsonify
+from flask import Flask, render_template, request, send_file, abort, jsonify
 from fpdf import FPDF # Generates PDF files from text, Converts generated MCQs and answers into downloadable PDFs
 import google.generativeai as genai
 from dotenv import load_dotenv

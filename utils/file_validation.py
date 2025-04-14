@@ -1,4 +1,3 @@
-import os # Used for OS-level operations (like working with file paths).
 import magic  # For MIME (media type) detection - Reads actual binary content to detect file type
 from werkzeug.utils import secure_filename  # Ensures safe file naming
 
@@ -34,6 +33,3 @@ def valid_file_size(file): # Ensures uploaded files are under 10MB
     file.seek(0)  # Reset pointer
     return file_size <= MAX_FILE_SIZE
 
-def get_secure_filename(filename): # Sanitizes filename to prevent path traversal attacks
-    """Return a sanitized filename for safer storage."""
-    return secure_filename(filename)
