@@ -1,0 +1,233 @@
+💡 Flask
+Q: Why did you choose Flask for your project?
+A: Flask is lightweight, easy to set up, and perfect for building quick APIs or MVPs like Questify. It gave us flexibility with routing, templates, and was easy to integrate with the file upload and ML pipeline.
+
+💡 PyMuPDF (fitz)
+Q: What is PyMuPDF used for in your app?
+A: We used fitz to extract structured text from PDF files. It helps differentiate between text-based and image-only PDFs (which we don’t support).
+
+💡 python-docx
+Q: How do you handle DOCX files?
+A: Using python-docx, we extract paragraph text from DOCX files and sanitize it before feeding to the Gemini model.
+
+💡 google-generativeai
+Q: What does Google Generative AI do in your project?
+A: We use Gemini 1.5 Pro to generate multiple-choice questions (MCQs) from user-uploaded content. It gives contextual, high-quality questions with options and answers.
+
+💡 FPDF
+Q: How are the MCQs and answers converted to PDF?
+A: Using FPDF, we format each MCQ or answer into a separate line in a multi-cell PDF layout, saved temporarily for download.
+
+💡 dotenv
+Q: Why did you use python-dotenv?
+A: To securely load API keys and sensitive config from a .env file, avoiding hardcoding secrets in code.
+
+💡 gunicorn
+Q: Where does Gunicorn fit in?
+A: It's our WSGI server for deployment. While Flask’s server is great for development, Gunicorn is production-ready and handles concurrent requests better.
+
+💡 Error Handling
+Q: How did you handle errors in file processing or generation?
+A: We use try-except blocks around all sensitive operations and provide clear error messages to users through Flask’s error handlers and result page. 💡 tempfile
+Q: Why did you use the tempfile module?
+A: We used Python’s tempfile to create temporary files for user uploads and generated PDFs. It avoids permanent storage, which supports data privacy and reduces storage overhead.
+
+💡 secure_filename (from werkzeug)
+Q: What’s the use of secure_filename in your project?
+A: It prevents malicious filenames (e.g., ../../../etc/passwd) by removing unsafe characters, reducing file path traversal attacks when saving uploaded files.
+
+💡 File Type & MIME Validation
+Q: How do you ensure the uploaded files are safe and valid?
+A: We check:
+
+File extension (.pdf, .docx, .txt)
+
+MIME type using python-magic to match content
+
+File size under 10MB
+This three-step validation minimizes risks of executing or reading malicious files.
+
+💡 Image-Only PDFs Handling
+Q: How do you handle image-only PDFs?
+A: We use PyMuPDF to detect if a PDF page has no text but has embedded images. If detected, we return an error message: “Image-only documents are not supported.”
+
+💡 Text Sanitization
+Q: What kind of text sanitization do you perform?
+A: We use regex to:
+
+Remove extra whitespace
+
+Strip non-printable/control characters
+
+Preserve newlines for structure
+This ensures clean and consistent input for the AI model.
+
+💡 MCQ Prompt Engineering
+Q: How do you generate structured MCQs using Gemini?
+A: We craft a clear prompt asking for N MCQs in a specific format with numbered questions, options A-D, and a "Correct Answer". This improves consistency and makes parsing easier.
+
+💡 Model Selection & Fallback
+Q: How do you handle model unavailability?
+A: We fetch available models with genai.list_models() and validate if "gemini-1.5-pro-latest" exists. If not, the app logs a clear error and exits gracefully.
+
+💡 PDF Generation with FPDF
+Q: Why use FPDF instead of a template engine for PDF?
+A: FPDF allows us to dynamically insert lines of text (MCQs, answers) using multi_cell() and maintain formatting like spacing, page breaks, and font — it’s ideal for simple content export.
+
+💡 Deployment with Gunicorn
+Q: Why choose Gunicorn for deployment?
+A: Flask’s built-in server isn’t suitable for production. Gunicorn is a battle-tested WSGI server that handles multiple concurrent requests and scales better under load.
+
+💡 JSON Error Responses
+Q: What kind of error handling have you implemented?
+A: We have route-specific try-except blocks and custom error handlers for 400, 404, and 500 errors — returning clear JSON messages to help in debugging or API use.
+
+💡 Multiple File Upload Support
+Q: How does your backend handle multiple file uploads?
+A: We loop through request.files.getlist('files'), validate each file, and temporarily save + extract content from each. Then we merge all extracted text for MCQ generation.
+
+💡 Memory Management
+Q: How do you manage memory and storage for file uploads?
+A: We use temporary files and delete them using finally blocks after processing to avoid memory leaks or leftover files on the server.
+
+💡 Security Practices
+Q: What security precautions did you take?
+A:
+
+Validating file extensions + MIME
+
+File size limit
+
+Secure filename sanitization
+
+Avoiding file persistence (temporary files only)
+
+No third-party file storage or DBs for privacy
+
+💡 Why Not OCR for Image PDFs?
+Q: Why don’t you support image-only PDFs using OCR?
+A: OCR (like Tesseract) can be slow, inaccurate, and requires heavy pre-processing. To maintain speed and quality, we chose to support only text-based documents for now.
+
+💡 Why Google Gemini Instead of OpenAI?
+Q: Why did you choose Gemini API over OpenAI GPT?
+A: Gemini 1.5 Pro offers a great free-tier quota, supports better structured generation, and integrates well with Google ecosystem (like GCP) for future scaling.
+
+💡 Q: Can you walk me through the flow of how a file is processed in Questify?
+A:
+Sure!
+
+The user uploads PDF/DOCX/TXT files on the frontend.
+
+The Flask backend receives and validates them (extension, size, MIME).
+
+Each file is temporarily saved using tempfile.
+
+Based on file type, the correct extraction method is called (PyMuPDF, python-docx, or plain decode).
+
+All extracted texts are merged and sent to Gemini with a prompt.
+
+Gemini responds with MCQs + answers → these are saved to PDFs using FPDF.
+
+The user can download the generated PDFs.
+
+💡 Q: Why did you not use a database in this project?
+A:
+Because we don’t store anything permanently — files are processed in-memory or via temporary storage. This reduces privacy risks and simplifies architecture for a file-to-AI task.
+
+💡 Q: If you had to scale this project to 1000s of users, what changes would you make?
+A:
+
+Use asynchronous processing (e.g., Celery with a job queue) for generating MCQs.
+
+Add Redis or a message broker for background tasks.
+
+Store generated PDFs on cloud storage (e.g., Google Cloud Storage).
+
+Introduce user authentication and limit per-user quotas.
+
+Move from tempfile to secure cloud buckets.
+
+💡 Q: What’s the difference between generate_content and generate_content_stream?
+A:
+generate_content() returns the full output at once.
+generate_content_stream() gives you streamed chunks of response as it generates — ideal for real-time apps or chatbots. In our case, full response is fine since we’re generating all MCQs at once.
+
+💡 Q: What limitations did you face while using Gemini?
+A:
+
+The free tier has limited quotas.
+
+It can hallucinate (generate unrelated questions).
+
+Slight formatting errors in generated output — we had to parse and clean it using regex.
+
+Sometimes large text input can cause latency or cutoffs.
+
+💡 Q: Why did you modularize validation and text extraction into separate files?
+A:
+To follow the Separation of Concerns principle:
+
+file_validation.py → handles file safety
+
+text_sanitization.py → handles input cleanliness
+
+app.py → focuses on routing and logic
+This improves code readability, debugging, and collaboration.
+
+💡 Q: What if someone uploads a malicious file? Can your app be exploited?
+A: We’ve secured the app by:
+
+Validating file extensions and MIME types
+
+Limiting file size
+
+Sanitizing filenames with secure_filename
+
+Avoiding permanent storage
+All these reduce attack surfaces like file injection or remote code execution.
+
+💡 Q: How did you handle user errors (e.g., empty files, unsupported formats)?
+A:
+We check if files are present, validate each, and give friendly feedback if:
+
+File is too big
+
+File has no text
+
+File is image-only PDF
+
+File extension or MIME is invalid
+All errors are shown in results.html.
+
+💡 Q: What will happen if Google API fails or is slow?
+A:
+We handle Gemini errors inside try-except blocks. If an error occurs, the user sees a meaningful message like “⚠️ Error generating content.”
+If needed, we can retry or log the failure for review.
+
+💭 Bonus Conceptual / Opinion Questions
+💡 Q: Can this system be used for exams or education? What are the ethical concerns?
+A:
+Yes — it can help teachers auto-generate quizzes.
+But if misused (e.g., to cheat or blindly copy answers), it can degrade learning. We should add plagiarism checks or ethical use disclaimers.
+
+💡 Q: How did you test your app? Did you write any unit tests?
+A:
+We manually tested:
+
+PDF with and without text
+
+DOCX with multiple paragraphs
+
+TXT with non-UTF8 encoding
+No formal unit tests yet, but we plan to add tests for:
+
+File validation functions
+
+Gemini output format
+
+PDF content generation
+
+💡 Q: Why use FPDF and not ReportLab, PDFKit, or HTML to PDF?
+A:
+FPDF is simple, lightweight, and fits our use case — plain text MCQs.
+ReportLab is more powerful for complex designs, and pdfkit requires wkhtmltopdf which adds setup complexity.

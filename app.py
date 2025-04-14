@@ -88,9 +88,10 @@ def generate_mcqs(text, num_questions):
         # Validates that content is not empty.
         mcqs = []
         for i, q in enumerate(mcq_text.split("\n\n")):
-            if re.match(r'^Q\d+\)', q.strip()):  # Already numbered
+            if re.match(r'^Q\d+\)', q.strip()):  # If question already starts with "Q1)", etc.
                 mcqs.append(q.strip())
             else:
+                # Add numbering manually and remove extra formatting
                 mcqs.append(f"Q{i+1}) {q.strip().replace('**', '')}")
 
         # Extracts the correct answers for each MCQ.
