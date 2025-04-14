@@ -1,13 +1,16 @@
-import os
-import fitz  # PyMuPDF
+import os # File and path handling, Helps in working with .env files, temp files, and file paths
+import fitz  # PyMuPDF, Extracts text from PDFs and detects if PDFs are image-only
+
+# Imports Flask and essential utilities - Enables routing (Flask), rendering HTML (render_template), handling form submissions (request), downloading files (send_file), and error handling (abort, jsonify).
 from flask import Flask, render_template, request, redirect, url_for, send_file, abort, jsonify
-from fpdf import FPDF
+from fpdf import FPDF # Generates PDF files from text, Converts generated MCQs and answers into downloadable PDFs
 import google.generativeai as genai
 from dotenv import load_dotenv
 import re
-import tempfile
+import tempfile # Used for safely storing user uploads and generated PDFs without permanent storage.
 
-# Import functions from your dedicated files
+
+# Import functions from our dedicated files
 from utils.file_validation import allowed_file, valid_mime_type, valid_file_size
 from utils.text_sanitization import sanitize_text, extract_pdf_content, extract_docx_content, extract_txt_content
 
@@ -15,7 +18,7 @@ from utils.text_sanitization import sanitize_text, extract_pdf_content, extract_
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-# # Load API Key
+# Load API Key
 api_key = os.getenv("GOOGLE_API_KEY")
 
 
@@ -35,6 +38,7 @@ try:
     if model_name not in available_models:
         raise ValueError(f"Model '{model_name}' is unavailable. Check your Google Gemini API setup.")
     
+    # Initializes the Gemini model for content generation.
     model = genai.GenerativeModel(model_name)
 except ValueError as ve:
     print(f"[ERROR] {ve}")
@@ -43,6 +47,8 @@ except Exception as e:
     print(f"[ERROR] Unexpected error during model configuration: {e}")
     exit(1)
 
+
+# Flask App Initialization
 app = Flask(__name__, template_folder="templates")
 
 # Maximum file size (10MB)
@@ -72,12 +78,14 @@ def generate_mcqs(text, num_questions):
               'Q1) Question\nA) Option1\nB) Option2\nC) Option3\nD) Option4\nCorrect Answer: Option'\n\n{text}"
 
     try:
+        # Calls the model and extracts text from response.
         response = model.generate_content(prompt)
         mcq_text = response.text if hasattr(response, 'text') else ""
 
         if not mcq_text.strip():
             return [], []
 
+        # Validates that content is not empty.
         mcqs = []
         for i, q in enumerate(mcq_text.split("\n\n")):
             if re.match(r'^Q\d+\)', q.strip()):  # Already numbered
@@ -85,7 +93,7 @@ def generate_mcqs(text, num_questions):
             else:
                 mcqs.append(f"Q{i+1}) {q.strip().replace('**', '')}")
 
-
+        # Extracts the correct answers for each MCQ.
         answers = [q.split("Correct Answer:")[1].strip() for q in mcqs if "Correct Answer:" in q]
         return mcqs, answers
     except Exception as e:
@@ -103,13 +111,14 @@ def save_as_pdf(content_list, filename):
         pdf.multi_cell(0, 10, item.encode('latin-1', 'ignore').decode('latin-1'))
         pdf.ln(5)
 
-    # Use temp directory instead of UPLOAD_FOLDER
+    # Use temp directory instead of UPLOADED_FILES_FOLDER
     temp_dir = tempfile.gettempdir()
     filepath = os.path.join(temp_dir, filename)
     pdf.output(filepath, "F")
     return filepath  # Return full path instead of filename
 
 
+# Flask Routes
 @app.route('/')
 def landing_page():
     return render_template('landing.html')
@@ -125,9 +134,11 @@ def upload_page():
 
 @app.route('/generate', methods=['POST'])
 def generate():
+    # Checks if files are uploaded
     if 'files' not in request.files:
         return render_template('results.html', mcqs=[], error_msg="⚠️ No files uploaded.", image_files=[])
 
+    # Gets uploaded files and number of MCQs to generate.
     files = request.files.getlist('files')
     num_questions = int(request.form.get('num_questions', 5))
 
@@ -223,5 +234,7 @@ def not_found_error(e):
 def internal_server_error(e):
     return jsonify({"error": "Internal Server Error", "message": "Something went wrong on our end."}), 500
 
+
+# Run Flask App
 if __name__ == '__main__':
     app.run(debug=True)
