@@ -1,4 +1,4 @@
-## 🚀 Questify: Transforming Documents into Interactive Quizzes Powered by AI
+## 🚀 Questify: Transforming Documents into Interactive MCQs Powered by AI
 
 **Questify** is an interactive platform that automatically generates **multiple-choice questions (MCQs)** from **PDF**, **Word**, or **TXT** files using the powerful **Google Gemini API**. Perfect for educators, students, or lifelong learners, Questify makes quiz creation fast, easy, and accurate.
 
