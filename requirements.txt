@@ -5,7 +5,7 @@ fpdf
 gunicorn
 python-docx
 google-generativeai
-
+# python-magic
 
 
 # Flask	- The main backend web framework you're using
