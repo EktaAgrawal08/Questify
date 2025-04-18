@@ -1,25 +1,27 @@
 ## 🚀 Questify: Transforming Documents into Interactive MCQs Powered by AI
 
-**Questify** is an interactive platform that automatically generates **multiple-choice questions (MCQs)** from **PDF**, **Word**, or **TXT** files using the powerful **Google Gemini API**. Perfect for educators, students, or lifelong learners, Questify makes quiz creation fast, easy, and accurate.
+**Questify** is an interactive web platform that automatically generates **multiple-choice questions (MCQs)** from **PDF**, **Word**, or **TXT** files using the powerful **Google Gemini API**. Designed for educators, students, and lifelong learners, Questify makes quiz creation effortless, fast, and accurate.
+
+🌐 **Live Demo**: [Questify on Render](https://questify-kdkf.onrender.com)
 
 ---
 
 ## ✨ Features
 
-- 📄 **Upload** your **PDF**, **Word**, or **TXT** files.  
-- 🤖 **AI-Powered MCQ Generation**: Accurate and contextually relevant questions created via Google Gemini API.  
-- 📥 **Download** MCQs in a clean, readable **PDF** format.  
-- 🧪 **Demo Documents**: Try with pre-uploaded files in the `demo_docs/` folder.  
-- 🌙 **Dark Mode Toggle** for a comfortable experience at any time.
+- 📄 **Upload** your **PDF**, **Word**, or **TXT** documents  
+- 🤖 **AI-Powered MCQ Generation** using **Google Gemini API**  
+- 📥 **Download** questions in a clean, printable **PDF** format  
+- 🧪 **Try Demo Files** from the `demo_docs/` folder  
+- 🌙 **Dark Mode Toggle** for a better visual experience
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript, Bootstrap (responsive and modern UI)  
-- **Backend**: Python (Flask) - lightweight, simple, and highly customizable  
-- **AI Integration**: Google Gemini API (for powerful document-based content analysis)  
-- **Environment Management**: `.env` (store sensitive data like API keys securely)
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap (for responsive, modern UI)  
+- **Backend**: Python (Flask) — lightweight and flexible  
+- **AI Integration**: Google Gemini API for document-based MCQ generation  
+- **Environment**: `.env` for secure API key storage
 
 ---
 
@@ -32,12 +34,12 @@ git clone https://github.com/EktaAgrawal08/Questify.git
 cd Questify
 ```
 
-### 2. (Optional) Create a Virtual Environment
+### 2. (Optional) Set Up Virtual Environment
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # For Linux/macOS
-venv\Scripts\activate  # For Windows
+source venv/bin/activate  # macOS/Linux
+venv\Scripts\activate     # Windows
 ```
 
 ### 3. Install Dependencies
@@ -46,26 +48,27 @@ venv\Scripts\activate  # For Windows
 pip install -r requirements.txt
 ```
 
-### 4. Configure Environment Variables
+### 4. Add Your API Key
 
-- Copy `.env.example` to `.env` and add your **Google Gemini API Key**.
+- Copy `.env.example` to `.env`
+- Add your **Google Gemini API key** to the `.env` file
 
-### 5. Run the Application
+### 5. Run the App Locally
 
 ```bash
 python app.py
 ```
 
-Your app should now be live locally! Open your browser and explore Questify.
+Visit `http://localhost:5000` in your browser to use the app locally.
 
 ---
 
-## 📂 Usage
+## 📂 How to Use
 
-1. **Upload** a **PDF**, **Word**, or **TXT** file.  
-2. The **Google Gemini API** analyzes the document and generates MCQs.  
-3. **Download** the generated MCQs in a **PDF** format.  
-4. Use the **demo documents** in the `demo_docs/` folder to test the platform.
+1. Upload a **PDF**, **Word**, or **TXT** file  
+2. The system uses **Google Gemini API** to generate relevant MCQs  
+3. Preview and **download** the questions as a **PDF**  
+4. Experiment with demo files located in the `demo_docs/` folder
 
 ---
 
@@ -73,4 +76,6 @@ Your app should now be live locally! Open your browser and explore Questify.
 
 Made with 💙 by [**Ekta Agrawal**](https://github.com/EktaAgrawal08)
 
-- 🔗 [LinkedIn Profile](https://www.linkedin.com/in/ekta-agrawal-364b3a246/)
+- 🔗 [LinkedIn](https://www.linkedin.com/in/ekta-agrawal-364b3a246/)  
+- 🌐 [Live Site on Render](https://questify-kdkf.onrender.com)
+
