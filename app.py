@@ -14,7 +14,7 @@ import tempfile # Used for safely storing user uploads and generated PDFs withou
 from utils.file_validation import allowed_file, valid_mime_type, valid_file_size
 from utils.text_sanitization import sanitize_text, extract_pdf_content, extract_docx_content, extract_txt_content
 
-# Load .env file
+# Loads the .env file containing the API key for Google AI services.
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
@@ -25,6 +25,7 @@ api_key = os.getenv("GOOGLE_API_KEY")
 # Configure Google AI API
 genai.configure(api_key=api_key)
 
+# Error Handling for API Configuration
 try:
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
@@ -54,7 +55,7 @@ app = Flask(__name__, template_folder="templates")
 # Maximum file size (10MB)
 MAX_FILE_SIZE = 10 * 1024 * 1024
 
-
+# Text Extraction from Uploaded Files
 def extract_text(filepath):
     ext = filepath.rsplit('.', 1)[1].lower()
 
@@ -70,6 +71,7 @@ def extract_text(filepath):
 
     return text or ""
 
+# MCQ Generation
 def generate_mcqs(text, num_questions):
     if not text.strip():
         return [], []
@@ -100,7 +102,7 @@ def generate_mcqs(text, num_questions):
         return [f"⚠️ Error generating MCQs: {e}"], []
 
 
-
+# PDF Creation (MCQs and Answers)
 def save_as_pdf(content_list, filename):
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
