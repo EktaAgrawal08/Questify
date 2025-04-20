@@ -5,13 +5,46 @@ fpdf
 gunicorn
 python-docx
 google-generativeai
+# Approach 1
 # python-magic
 
+# ### 1. **Flask**
+# - 🔧 **Purpose:** A lightweight web framework to create web apps and APIs.
+# - 🧠 **Why in Questify:** You’re using it as the **backend framework** to handle file uploads, API calls, and serve the main logic of your app.
 
-# Flask	- The main backend web framework you're using
-# python-dotenv	- Loads your .env variables so you can securely use API keys
-# PyMuPDF - For reading PDF files and extracting text
-# fpdf - Used to generate PDF files, e.g., exporting MCQs
-# gunicorn - A production-grade WSGI server for running Flask apps on cloud platforms
-# python-docx -	Helps read .docx Word documents for MCQ input
-# google-generativeai -	SDK for using Gemini AI (e.g., to generate MCQs from text)
+# ---
+
+# ### 2. **python-dotenv**
+# - 📦 **Purpose:** Loads environment variables from a `.env` file.
+# - 🔒 **Why in Questify:** Helps you **secure sensitive info** like API keys (e.g., for Google Gemini) without hardcoding them in your code.
+
+# ---
+
+# ### 3. **PyMuPDF (fitz)**
+# - 📄 **Purpose:** Extracts text, images, and other content from PDF files.
+# - 📘 **Why in Questify:** You use it to **read and analyze PDFs uploaded by the user**, so that your AI can generate MCQs or summaries from the actual content.
+
+# ---
+
+# ### 4. **fpdf**
+# - 🖨️ **Purpose:** Used to generate new PDF documents.
+# - 📤 **Why in Questify:** Once MCQs or results are generated, you can **create and export a clean, downloadable PDF** with that content for the user.
+
+# ---
+
+# ### 5. **gunicorn**
+# - 🚀 **Purpose:** A production-ready WSGI server for running Python web apps.
+# - 🌐 **Why in Questify:** When deploying (e.g., on Heroku or any cloud platform), you need gunicorn to **serve your Flask app in production** (since Flask’s dev server isn’t suitable for live traffic).
+
+# ---
+
+# ### 6. **python-docx**
+# - 📄 **Purpose:** Reads and writes `.docx` Word documents.
+# - 📑 **Why in Questify:** Supports uploading and parsing of **Word files**, just like PDFs. Adds **flexibility for users** to submit content in different formats.
+
+# ---
+
+# ### 7. **google-generativeai**
+# - 🤖 **Purpose:** Connects to **Gemini Pro** or other Google AI models for text generation.
+# - 🧠 **Why in Questify:** Core of your project—this is the **AI engine** generating MCQs, summaries, or content analysis from user files.
+
