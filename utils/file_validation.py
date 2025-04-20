@@ -13,7 +13,7 @@ def allowed_file(filename):
 # Redundant safety check in later stages, is a simplified MIME-type check, but still based on the extension. It could be improved using actual MIME inspection.
 def valid_mime_type(file):
     """
-    Simplified MIME type check based on file extension only.
+    Simplified MIME(Multipurpose Internet Mail Extensions) type check based on file extension only.
     """
     ext = file.filename.rsplit('.', 1)[1].lower()
     return ext in ALLOWED_EXTENSIONS # It’s a lightweight backup check, though a real MIME check would inspect the file’s content type
