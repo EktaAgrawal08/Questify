@@ -6,8 +6,8 @@ from docx import Document # To extract all paragraph content from .docx document
 
 def sanitize_text(text):
     """Cleans and sanitizes text to remove unwanted characters and excessive whitespace."""
-    cleaned_text = re.sub(r'\s+', ' ', text.strip())  # Remove excessive spaces - Ensures the text is compact and easy to process for NLP tasks.
-    cleaned_text = re.sub(r'[^\x20-\x7E\n]', '', cleaned_text)  # Retain newlines for better structure - Ensures clean, readable, and model-friendly text input.
+    cleaned_text = re.sub(r'\s+', ' ', text.strip())  # Replaces multiple spaces, newlines, tabs with a single space. - Ensures the text is compact and easy to process for NLP tasks.
+    cleaned_text = re.sub(r'[^\x20-\x7E\n]', '', cleaned_text)  # Retain newlines for better structure - Ensures clean, readable, and model-friendly text input. Removes special/unreadable characters
     return cleaned_text.strip()
 
 def extract_pdf_content(file):
@@ -38,9 +38,9 @@ def extract_pdf_content(file):
 def extract_docx_content(file):
     """Extracts and sanitizes text from a DOCX file."""
     try:
-        doc = Document(file) # Loads the DOCX file into a Document object (like MS Word structure).
+        doc = Document(file) # Loads the DOCX file into a Document object (paragraph-wise structure).
 
-        text = ' '.join(para.text.strip() for para in doc.paragraphs if para.text.strip()) # Loops through each paragraph in the document.
+        text = ' '.join(para.text.strip() for para in doc.paragraphs if para.text.strip()) # Loops through each paragraph in the document. Extracts and joins all non-empty paragraphs.
 
     except Exception as e:
         print(f"⚠️ Error extracting DOCX content: {e}")
