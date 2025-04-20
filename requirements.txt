@@ -5,8 +5,7 @@ fpdf
 gunicorn
 python-docx
 google-generativeai
-# Approach 1
-# python-magic
+
 
 # ### 1. **Flask**
 # - 🔧 **Purpose:** A lightweight web framework to create web apps and APIs.
