@@ -84,10 +84,10 @@ def generate_mcqs(text, num_questions):
         response = model.generate_content(prompt)
         mcq_text = response.text if hasattr(response, 'text') else ""
 
-        if not mcq_text.strip():
+        if not mcq_text.strip(): # for empty responses
             return [], []
 
-        # Validates that content is not empty.
+        # Validates that content is not empty, Cleans and formats each MCQ, adds numbering if missing.
         mcqs = []
         for i, q in enumerate(mcq_text.split("\n\n")):
             if re.match(r'^Q\d+\)', q.strip()):  # Already numbered
@@ -104,19 +104,19 @@ def generate_mcqs(text, num_questions):
 
 # PDF Creation (MCQs and Answers)
 def save_as_pdf(content_list, filename):
-    pdf = FPDF()
-    pdf.set_auto_page_break(auto=True, margin=15)
-    pdf.add_page()
+    pdf = FPDF() # Initializes a new PDF document
+    pdf.set_auto_page_break(auto=True, margin=15) # Automatically adds new page if content overflows
+    pdf.add_page() # Adds the first page
     pdf.set_font("Arial", size=12)
 
     for item in content_list:
         pdf.multi_cell(0, 10, item.encode('latin-1', 'ignore').decode('latin-1'))
-        pdf.ln(5)
+        pdf.ln(5)  # Adds spacing after each item
 
     # Use temp directory instead of UPLOADED_FILES_FOLDER
-    temp_dir = tempfile.gettempdir()
-    filepath = os.path.join(temp_dir, filename)
-    pdf.output(filepath, "F")
+    temp_dir = tempfile.gettempdir()  # Gets system’s temporary directory
+    filepath = os.path.join(temp_dir, filename) # Full path where PDF will be saved
+    pdf.output(filepath, "F") # Saves the PDF to the temporary path
     return filepath  # Return full path instead of filename
 
 
@@ -142,17 +142,16 @@ def generate():
 
     # Gets uploaded files and number of MCQs to generate.
     files = request.files.getlist('files')
-    num_questions = int(request.form.get('num_questions', 5))
+    num_questions = int(request.form.get('num_questions', 5)) # Gets all uploaded files and number of MCQs (defaults to 5 if not given).
 
-    extracted_texts = []
-    image_only_files = []
-
-    temp_files = []
+    extracted_texts = [] # To store valid extracted texts
+    image_only_files = []  # Track image-only PDFs
+    temp_files = []  # Keep track of temporary paths
 
     try:
         for file in files:
-            if file and allowed_file(file.filename):
-                if not valid_file_size(file):
+            if file and allowed_file(file.filename):  # Check file extension
+                if not valid_file_size(file):  # Check file size
                     return render_template('results.html', mcqs=[], error_msg="⚠️ File size exceeds 10MB limit.", image_files=[])
 
                 if not valid_mime_type(file):
@@ -176,6 +175,7 @@ def generate():
         if not extracted_texts:
             return render_template('results.html', mcqs=[], error_msg="⚠️ No valid text found in uploaded documents.", image_files=[])
 
+        # Combines all text and uses Gemini model to create MCQs and answers.
         full_text = "\n".join(extracted_texts)
         mcqs, answers = generate_mcqs(full_text, num_questions)
 
@@ -188,6 +188,7 @@ def generate():
             save_as_pdf(answers, ans_pdf.name)
             ans_pdf_path = ans_pdf.name
 
+        # Shows generated MCQs and provides links to download PDFs.
         return render_template(
             'results.html',
             mcqs=mcqs,
@@ -207,6 +208,7 @@ def generate():
 
 @app.route('/download/<filename>')
 def download_file(filename):
+    # Looks for the file in the system's temporary directory.
     temp_dir = tempfile.gettempdir()
     file_path = os.path.join(temp_dir, filename)
     if not os.path.exists(file_path):
